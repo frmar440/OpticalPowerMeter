@@ -13,13 +13,15 @@ void setup() {
     // initialize serial communication at 9600 bps
     Serial.begin(9600);
 
-    // disable columns
+    // initialize digital pins
     for (int digitalPin: digitalPins) {
+
+        // configure output
         pinMode(digitalPin, OUTPUT);
+
+        // disable column
         digitalWrite(digitalPin, LOW);
     }
-
-    Serial.println("Start")
 }
 
 void loop() {
@@ -39,21 +41,22 @@ void loop() {
             // enable column
             digitalWrite(digitalPin, HIGH);
 
+            // T_ON (time to 99% of final voltage value)
+            delayMicroseconds(30);
+
             // rows loop
             for (int analogPin: analogPins) {
                 
                 // read temperature sensor
                 sensorValues[i] = analogRead(analogPin);
                 i++;
-
             }
 
             // disable column
             digitalWrite(digitalPin, LOW);
-
         }
 
-        // write sensor values
-        Serial.write(bite(sensorValues), 160);
+        // write sensor values as an array of bytes
+        Serial.write( (byte*)sensorValues, sizeof(sensorValues) );
     }
 }
