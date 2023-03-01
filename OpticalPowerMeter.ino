@@ -1,4 +1,14 @@
 
+/*
+Optical Power Meter
+
+This program waits for a byte in the serial port, and sends
+sensor values whenever it gets a byte in.
+
+created 03/01/23
+by Frédéric Marcotte
+*/
+
 // analog pins
 const int analogPins[8] = {A0,A1,A2,A3,A4,A5,A6,A7};
 
@@ -29,7 +39,7 @@ void loop() {
     // send data only when available
     if (Serial.available() > 0) {
 
-        // empty serial receive buffer
+        // empty receive buffer
         Serial.read();
 
         // sensorValues index
