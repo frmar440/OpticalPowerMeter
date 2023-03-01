@@ -21,4 +21,4 @@ with serial.Serial(port='/dev/ttyACM0', baudrate='9600', timeout=1) as ser:
         # read sensor values as an array of bytes
         sensorValues = ser.read(size=160)
 
-        print(sensorValues)
+        print( [ int.from_bytes( sensorValues[2*i:2*(i+1)], byteorder='little' ) for i in range(80) ] )
