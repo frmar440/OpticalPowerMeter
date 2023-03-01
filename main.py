@@ -8,7 +8,6 @@ by Frédéric Marcotte
 """
 
 import serial
-import time
 
 
 with serial.Serial(port='/dev/ttyACM0', baudrate='9600', timeout=1) as ser:
