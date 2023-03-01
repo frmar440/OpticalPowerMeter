@@ -1,8 +1,17 @@
+"""
+This program sends a byte out, and waits for an array of bytes.
+
+Call-and-response (handshaking) method with OpticalPowerMeter.ino
+
+created 03/01/2023
+by Frédéric Marcotte
+"""
+
 import serial
 import time
 
 
-with serial.Serial('/dev/ttyACM0') as ser:
+with serial.Serial(port='/dev/ttyACM0', baudrate='9600', timeout=1) as ser:
     
     while True:
 
@@ -13,5 +22,3 @@ with serial.Serial('/dev/ttyACM0') as ser:
         sensorValues = ser.read(size=160)
 
         print(sensorValues)
-
-        time.sleep(3)

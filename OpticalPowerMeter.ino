@@ -32,6 +32,9 @@ void setup() {
         // disable column
         digitalWrite(digitalPin, LOW);
     }
+
+    pinMode(LED_BUILTIN, OUTPUT);
+    digitalWrite(LED_BUILTIN, HIGH);
 }
 
 void loop() {
